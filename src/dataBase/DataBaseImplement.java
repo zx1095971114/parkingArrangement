@@ -1,7 +1,6 @@
 package dataBase;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.sql.*;
 
 import allInerface.*;
@@ -41,7 +40,36 @@ public class DataBaseImplement implements DataBase{
 	
 	
 	
-	public List<Map<String, Object>> executeQuery(String sql, Object[] params){
-		return null;
+	public Set<Map<String, String>> executeQuery(String sql, String[] columns){
+		Connection conn = null;
+		Statement stm = null;
+		ResultSet rs = null;
+		
+		//Map中key为属性名，value为属性值
+		//Set中的一个Map集合为一个元组
+		Set<Map<String, String>> set = new HashSet<>();
+		
+		try {
+			//获得数据库操作对象
+			stm = PrepareAndRlease.getStm(conn, stm);
+			
+			//4.进行sql操作
+			rs = stm.executeQuery(sql);
+			
+			//5.处理查询结果集
+			while(rs.next()) {
+				Map<String, String> map = new IdentityHashMap<>();
+				for(String key : columns) {
+					map.put(key,rs.getString(key));
+				}
+				set.add(map);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			PrepareAndRlease.release(conn, stm, rs);
+		}
+		
+		return set;
 	}
 }

@@ -1,5 +1,7 @@
 /*
  * 与后端数据库交互的接口
+ * ps:由于我的计算机设置了防火墙，你们连不到我计算机的数据库，所以请你们完成程序后将源码合并到git的develop分支上，
+ * 再跟我说，我来给你们检验程序
  */
 package allInerface;
 
@@ -15,10 +17,13 @@ public interface DataBase{
 	
 	/*
 	 * 参数：sql为SQL语句，
-	 * 返回值：被List<Map<String,Object>>封装好的查询语句查到的结果集
-	 * 用途：执行Sql 查询语句，把结果集合放在一个 List<Map<String,Object>> 里面
+	 * 返回值：被Set<Map<String,String>>封装好的查询语句查到的结果集
+	 * 用途：执行Sql 查询语句，把结果集合放在一个 Set<Map<String,String>> 里面
+	 * 	Map中key(前一个)为属性名，value(后一个)为属性值
+		Set中的一个Map集合为一个元组
+	 *	注意：无论Map集合还是Set集合，在遍历时均无法保证有序性，使用时要记得判断一下
 	 */
-	public List<Map<String, Object>> executeQuery(String sql, Object[] params);
+	public Set<Map<String, String>> executeQuery(String sql, String[] columns);
 }
 
 
