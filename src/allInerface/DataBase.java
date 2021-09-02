@@ -7,6 +7,8 @@ package allInerface;
 
 import java.util.*;
 
+import dataBase.DataBaseImplement;
+
 public interface DataBase{
 	/*
 	 * 参数：sql为要执行的SQL指令
@@ -17,15 +19,44 @@ public interface DataBase{
 	
 	/*
 	 * 参数：sql为SQL语句，
-	 * 返回值：被Set<Map<String,String>>封装好的查询语句查到的结果集
-	 * 用途：执行Sql 查询语句，把结果集合放在一个 Set<Map<String,String>> 里面
+	 * 返回值：被List<Map<String,String>>封装好的查询语句查到的结果集
+	 * 用途：执行Sql 查询语句，把结果集合放在一个 List<Map<String,String>> 里面
 	 * 	Map中key(前一个)为属性名，value(后一个)为属性值
 		Set中的一个Map集合为一个元组
-	 *	注意：无论Map集合还是Set集合，在遍历时均无法保证有序性，使用时要记得判断一下
+	 *	注意：Map实现是用的TreeMap会根据键值自动升序排列
 	 */
-	public Set<Map<String, String>> executeQuery(String sql, String[] columns);
+	public List<Map<String, String>> executeQuery(String sql, String[] columns);
+	
+	/*
+	 * 参数:无
+	 * 返回值：int型，可用车位数
+	 * 用途：计算已经使用的车位数
+	 */
+	public static int used_position() {
+		DataBase db = new DataBaseImplement();
+		
+		//取回原总车位
+		int former_all_position = 0;
+		String[] columns = {"all_position"};
+		List<Map<String,String>> list = db.executeQuery("select all_position from position_num", columns);
+		for(Map<String,String> map : list) {
+			former_all_position = Integer.valueOf(map.get("all_position"));
+		}
+		
+		//取回原可用车位
+		int former_now_position = 0;
+		String[] columns2 = {"now_position"};
+		List<Map<String,String>> list2 = db.executeQuery("select now_position from position_num", columns2);
+		for(Map<String,String> map : list2) {
+			former_now_position = Integer.valueOf(map.get("now_position"));
+		}
+		
+		//计算已用车位
+		int used_position = former_all_position - former_now_position;
+		
+		return used_position;
+	}
 }
-
 
 
 

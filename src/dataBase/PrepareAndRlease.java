@@ -10,7 +10,7 @@ public class PrepareAndRlease {
 			Class.forName("org.postgresql.Driver");
 			
 			//2.建立连接
-			String url = "jdbc:postgresql://localhost:5432/park_arrangement";
+			String url = "jdbc:postgresql://localhost:5432/park_test";
 			String usr = "postgres";
 			String psw = "Zx191702";
 			conn = DriverManager.getConnection(url, usr, psw);

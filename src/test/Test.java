@@ -3,6 +3,7 @@ import java.util.*;
 
 import allInerface.*;
 import dataBase.DataBaseImplement;
+import arrangement.*;
 
 public class Test {
 
@@ -24,20 +25,33 @@ public class Test {
 		 * 检验DataBase的executeQuery()方法
 		 * 检验成功
 		 */
-		Set<Map<String,String>> set = new HashSet<>();
-		String[] columns = {"car_id", "in_date", "in_time", "out_date", "out_time"};
-		set = db.executeQuery("select * from status", columns);
-		int i = 1;
-		for (Map<String,String> map : set) {
-			Set<Map.Entry<String, String>> set2 = map.entrySet();
-			for (Map.Entry<String, String> s : set2) {
-				String key = s.getKey();
-				String value = s.getValue();
-				System.out.println(i);
-				System.out.println(key + "   " + value);
-			}
-			i++;
-		}
+//		List<Map<String,String>> set = new ArrayList<>();
+//		String[] columns = {"car_id", "in_date", "in_time", "out_date", "out_time"};
+//		set = db.executeQuery("select * from status", columns);
+////		int i = 1;
+//		for (Map<String,String> map : set) {
+//			Set<Map.Entry<String, String>> set2 = map.entrySet();
+//			for (Map.Entry<String, String> s : set2) {
+//				String key = s.getKey();
+//				String value = s.getValue();
+////				System.out.println(i);
+//				System.out.print(key + ":" + value + " ");
+//			}
+//			System.out.println(" ");
+////			i++;
+//		}
+		
+		
+		Arrangement arrangement = new Arrangement();
+		arrangement.start();
+		scan.close();
+		
+
+		/*
+		 * 检验DataBase的used_position()方法
+		 * 检验成功
+		 */
+//		System.out.println(DataBase.used_position());
 	}
 
 }
