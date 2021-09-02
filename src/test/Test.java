@@ -44,7 +44,6 @@ public class Test {
 		
 		Arrangement arrangement = new Arrangement();
 		arrangement.start();
-		scan.close();
 		
 
 		/*
