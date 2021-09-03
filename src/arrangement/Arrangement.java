@@ -12,6 +12,7 @@ import dataBase.DataBaseImplement;
 public class Arrangement extends Thread{
 	public void run() {
 		Scanner scan = new Scanner(System.in);
+		//此处输用户名与密码不能有空格
 		while(!Login.login(scan)) {
 			System.out.println("用户名或密码错误，请重新输入");
 		}
@@ -23,6 +24,7 @@ public class Arrangement extends Thread{
 		while(i) {
 			command = scan.nextLine();
 			//在vip表中添加固定车车牌，注意要在position_num里把now_position--
+			//此处无法识别非车牌号的输入
 			if(command.equals("input-car_id")) {
 				DataBase db = new DataBaseImplement();
 				String car_id = scan.nextLine();
@@ -49,6 +51,7 @@ public class Arrangement extends Thread{
 			}
 			
 			//从vip表中删除固定车车牌,注意要在position_num里把now_position++
+			//输入不在vip表中的数据是无法被删除的
 			else if(command.equals("delete-car_id") ) {
 				DataBase db = new DataBaseImplement();
 				String car_id = scan.nextLine();
@@ -74,6 +77,7 @@ public class Arrangement extends Thread{
 			}
 			
 			//更新总车位数，记得同步修改现有车位数
+			//当总车位数比已用车位数小时，现有车位数会出现负数的情况
 			else if(command.equals("update-all_position") ) {
 				DataBase db = new DataBaseImplement();
 				String all_position = scan.nextLine();
@@ -113,6 +117,8 @@ public class Arrangement extends Thread{
 			}
 			
 			//更新收费标准
+			//收费标准不为数字不会被更新
+			//收费标准为负数会被更新
 			else if(command.equals("update-fee") ) {
 				DataBase db = new DataBaseImplement();
 				String all_position = scan.nextLine();
@@ -151,12 +157,15 @@ public class Arrangement extends Thread{
 				for(Map<String,String> map : list) {
 					System.out.print(map.get("all_position"));
 					System.out.print("           ");
-					System.out.print(map.get("now_position"));
+					System.out.println(map.get("now_position"));
 				}
 				continue;
 			}
 			
 			//输出某时间段内的所有非固定车的历史停靠信息
+			//必须按照timestamp支持的格式输入，如：2021-09-02 22:10:00
+			//打印的车辆的历史信息一定是在输入的时间范围内的，且不能包括起止时间
+			//开始时间和结束时间之间要求换行
 			else if(command.equals("print-history-info") ) {
 				DataBase db = new DataBaseImplement();
 				String in_timestamp = scan.nextLine();
@@ -186,6 +195,9 @@ public class Arrangement extends Thread{
 			}
 			
 			//打印某时段内总的应收金额
+			//必须按照timestamp支持的格式输入，如：2021-09-02 22:10:00
+			//打印的车辆的总金额信息一定是在输入的时间范围内的，且不能包括起止时间
+			//开始时间和结束时间之间要求换行
 			else if(command.equals("print-history-money") ) {
 				DataBase db = new DataBaseImplement();
 				String in_timestamp = scan.nextLine();
@@ -204,7 +216,7 @@ public class Arrangement extends Thread{
 				
 				//将费用保留2位小数
 				DecimalFormat df = new DecimalFormat("0.00");
-				System.out.print(df.format(fee) );
+				System.out.println(df.format(fee) );
 				continue;
 			}
 			
