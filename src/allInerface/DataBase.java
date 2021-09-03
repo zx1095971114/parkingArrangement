@@ -7,6 +7,8 @@ package allInerface;
 
 import java.util.*;
 
+import java.util.regex.*;
+
 import dataBase.DataBaseImplement;
 
 public interface DataBase{
@@ -55,6 +57,19 @@ public interface DataBase{
 		int used_position = former_all_position - former_now_position;
 		
 		return used_position;
+	}
+	
+	/*
+	 * 参数:要判断的字符串
+	 * 返回值:如果符合车牌号基本规则，返回true，否则返回false
+	 * 用途:判断某字符串是否符合蓝牌一般私家车的车牌号规则
+	 */
+	public static boolean isCarId(String car_id) {
+		//正则表达式，[]内为可出现的字符，{}内为匹配次数
+		//判断规则是：第一个字符是“京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新使”中的一个，第二个字符是A-Z中的一个，后面的五个是0-9，A-Z中的五个
+		String stdId = "([京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新使]{1}[A-Z]{1}[0-9A-Z]{5})";
+		
+		return Pattern.matches(stdId, car_id);
 	}
 }
 

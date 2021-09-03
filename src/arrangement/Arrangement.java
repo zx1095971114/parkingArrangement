@@ -1,5 +1,11 @@
 /*
- * Arrangement线程，用于实现“停车场管理”的需求
+ * Arrangement程序，用于实现“停车场管理”的需求
+ * 注意：此程序只能在windows cmd等或 linux terminal中运行，因为使用了System.console()方法得到了Console的实例对象，但是
+ * 
+ * Java 要与Console进行交互，不总是能得到可用的Java Console类的。一个JVM是否有可用的Console，依赖于底层平台和JVM如何被调用。如果JVM是在交互式命令行（比如Windows的 cmd，linux/unix的 terminal）中启动的，并且输入输出没有重定向到另外的地方，才可得到一个可用的Console实例。
+————————————————
+版权声明：本文为CSDN博主「RiskAI」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/jhsword/article/details/108564052
  */
 
 package arrangement;
@@ -9,11 +15,11 @@ import java.util.*;
 import allInerface.*;
 import dataBase.DataBaseImplement;
 
-public class Arrangement extends Thread{
-	public void run() {
+public class Arrangement {
+	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		//此处输用户名与密码不能有空格
-		while(!Login.login(scan)) {
+		while(!Login.login()) {
 			System.out.println("用户名或密码错误，请重新输入");
 		}
 		
@@ -24,10 +30,15 @@ public class Arrangement extends Thread{
 		while(i) {
 			command = scan.nextLine();
 			//在vip表中添加固定车车牌，注意要在position_num里把now_position--
-			//此处无法识别非车牌号的输入
+			//此处无法识别非车牌号的输入，已解决
 			if(command.equals("input-car_id")) {
 				DataBase db = new DataBaseImplement();
 				String car_id = scan.nextLine();
+				
+				if(!DataBase.isCarId(car_id)) {
+					System.out.println("车牌非法，添加失败");
+					continue;
+				}
 				
 				if(db.add_update_delete("insert into vip values('" + car_id + "')")) {
 					//取回now_position
@@ -77,7 +88,7 @@ public class Arrangement extends Thread{
 			}
 			
 			//更新总车位数，记得同步修改现有车位数
-			//当总车位数比已用车位数小时，现有车位数会出现负数的情况
+			//当总车位数比已用车位数小时，现有车位数会出现负数的情况，已解决
 			else if(command.equals("update-all_position") ) {
 				DataBase db = new DataBaseImplement();
 				String all_position = scan.nextLine();
@@ -104,6 +115,11 @@ public class Arrangement extends Thread{
 				if(db.add_update_delete("update position_num set all_position = " + all_position) ) {
 					//计算现可用车位
 					int now_position = Integer.valueOf(all_position) - used_position;
+					//判断总车位数是否合法
+					if(now_position < 0) {
+						System.out.println("该总车位数太小，不合实际，修改总车位数失败");
+						continue;
+					}
 					
 					//修改现可用车位
 					db.add_update_delete("update position_num set now_position = " + now_position);
@@ -118,12 +134,18 @@ public class Arrangement extends Thread{
 			
 			//更新收费标准
 			//收费标准不为数字不会被更新
-			//收费标准为负数会被更新
+			//收费标准为负数会被更新，已解决
 			else if(command.equals("update-fee") ) {
 				DataBase db = new DataBaseImplement();
-				String all_position = scan.nextLine();
+				String fee = scan.nextLine();
 				
-				if(db.add_update_delete("update money set fee = " + all_position) ) {
+				//判断fee的值是否大于0
+				if(Double.valueOf(fee) < 0) {
+					System.out.println("输入的标准不合法，修改收费标准失败");
+					continue;
+				}
+				
+				if(db.add_update_delete("update money set fee = " + fee) ) {
 					System.out.println("修改收费标准成功");
 				}
 				else {

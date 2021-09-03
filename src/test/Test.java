@@ -42,8 +42,17 @@ public class Test {
 //		}
 		
 		
-		Arrangement arrangement = new Arrangement();
-		arrangement.start();
+//		Arrangement arrangement = new Arrangement();
+//		arrangement.start();
+		
+		
+		
+		/*
+		 * 检验DataBase的isCarId()方法
+		 * 检验成功
+		 */
+		
+//		System.out.println(DataBase.isCarId("湘A12345"));
 		
 
 		/*
