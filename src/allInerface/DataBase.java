@@ -5,6 +5,7 @@
  */
 package allInerface;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import java.util.regex.*;
@@ -70,6 +71,39 @@ public interface DataBase{
 		String stdId = "([京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新使]{1}[A-Z]{1}[0-9A-Z]{5})";
 		
 		return Pattern.matches(stdId, car_id);
+	}
+	
+	/*
+	 * 参数：无
+	 * 返回值：now_position的值
+	 * 用处：查询now_positon
+	 */
+	public static int getNow_position() {
+		//获取now_position
+		String sql = "select now_position from position_num";
+		String[] columns = {"now_position"};
+		DataBase db = new DataBaseImplement();
+		List<Map<String,String>> list = db.executeQuery(sql, columns);
+		
+		int now_position = 0;
+		for (Map<String, String> map : list) {
+			now_position = Integer.valueOf(map.get("now_position"));
+		}
+		return now_position;
+		
+	}
+	
+	/*
+	 * 参数：
+	 * 返回值：当前时间的timestamp
+	 * 用处：获取当前时间的时间戳
+	 */
+	
+    public static String getNowTimestamp() {
+    	Date date = new Date();
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    	String nowTimestamp = sdf.format(date);
+		return nowTimestamp;
 	}
 }
 

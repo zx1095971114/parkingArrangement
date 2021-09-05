@@ -1,8 +1,17 @@
 package test;
+import java.security.Timestamp;
+
+import java.time.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.*;
+
 
 import allInerface.*;
 import dataBase.DataBaseImplement;
+import inPark.Preparing;
+import outPark.FileAction;
+import outPark.OutPrepare;
 import arrangement.*;
 
 public class Test {
@@ -54,12 +63,17 @@ public class Test {
 		
 //		System.out.println(DataBase.isCarId("湘A12345"));
 		
+		
 
 		/*
 		 * 检验DataBase的used_position()方法
 		 * 检验成功
 		 */
 //		System.out.println(DataBase.used_position());
+		
+		
+		
+		FileAction.copyFile2("C:\\handlingPicture\\2.jpg", "C:\\handlingPicture\\B\\2.jpg");
 	}
 
 }
