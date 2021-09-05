@@ -1,0 +1,11 @@
+应用名称
+AppID
+API Key
+Secret Key
+包名
+judgeCar_id
+24803348
+vFimwuNNC7YgffBob8qjCDZ5   APIKEY
+BM2vVkW4EHizFpQIcvdfXGdGs9k4S6eH隐藏  SECRETKEY
+文字识别
+不需要

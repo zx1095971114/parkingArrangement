@@ -23,11 +23,7 @@ public class InPark {
 				//获取入场车车牌
 				System.out.println("请输入要入场车辆的图片路径");
 				String resouce = scan.nextLine();
-				
-				//此处写judge要用到的文件夹路径
-				String destination = "";
-				
-				String inCar_id = Judge.preparingCar_id(resouce, destination);
+				String inCar_id = Judge.judge(resouce);
 				
 				//判断入场车牌是否合法
 				if(!DataBase.isCarId(inCar_id)) {
@@ -93,7 +89,7 @@ public class InPark {
 			
 			//错误命令提醒
 			else {
-				System.out.println("入场命令错误，请重新输入");
+				System.out.println("命令错误，键入\"help\"获取帮助信息");
 				continue;
 			}
 		}

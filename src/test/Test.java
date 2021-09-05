@@ -9,7 +9,6 @@ import java.util.*;
 
 import allInerface.*;
 import dataBase.DataBaseImplement;
-import inPark.Preparing;
 import outPark.FileAction;
 import outPark.OutPrepare;
 import arrangement.*;
@@ -73,7 +72,8 @@ public class Test {
 		
 		
 		
-		FileAction.copyFile2("C:\\handlingPicture\\2.jpg", "C:\\handlingPicture\\B\\2.jpg");
+		String a = Judge.judge("inCars/1.jpg");
+		System.out.println(a);
 	}
 
 }

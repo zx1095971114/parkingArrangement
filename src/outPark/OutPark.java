@@ -9,7 +9,7 @@ import java.util.*;
 import allInerface.DataBase;
 import allInerface.Judge;
 import dataBase.DataBaseImplement;
-import inPark.Preparing;
+
 
 
 public class OutPark {
@@ -26,11 +26,7 @@ public class OutPark {
 				//获取出场车车牌
 				System.out.println("请输入要入场车辆的图片路径");
 				String resouce = scan.nextLine();
-				
-				//此处写judge要用到的文件夹路径
-				String destination = "";
-				
-				String outCar_id = Judge.preparingCar_id(resouce, destination);
+				String outCar_id = Judge.judge(resouce);
 				
 				//判断入场车牌是否合法
 				if(!DataBase.isCarId(outCar_id)) {

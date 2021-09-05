@@ -17,6 +17,7 @@ import dataBase.DataBaseImplement;
 
 public class Arrangement {
 	public static void main(String[] args) {
+		
 		Scanner scan = new Scanner(System.in);
 		//此处输用户名与密码不能有空格
 		while(!Login.login()) {
@@ -24,6 +25,17 @@ public class Arrangement {
 		}
 		
 		System.out.println("欢迎进入Arrangement系统");
+		
+		System.out.println("input-car_id:在vip表中添加固定车车牌");
+		System.out.println("delete-car_id:从vip表中删除固定车车牌");
+		System.out.println("update-all_position:更新总车位数，同步修改现有车位数");
+		System.out.println("update-fee:更新收费标准");
+		System.out.println("print-vip:打印固定车车牌");
+		System.out.println("print-position:打印总车位数与现可停车位数信息");
+		System.out.println("print-history-info:输出某时间段内的所有非固定车的历史停靠信息");
+		System.out.println("print-history-money:打印某时段内总的应收金额");
+		System.out.println("quit:退出程序");
+		System.out.println("quit:获取帮助信息");
 		
 		String command = null;
 		boolean i = true;
@@ -188,9 +200,13 @@ public class Arrangement {
 			//必须按照timestamp支持的格式输入，如：2021-09-02 22:10:00
 			//打印的车辆的历史信息一定是在输入的时间范围内的，且不能包括起止时间
 			//开始时间和结束时间之间要求换行
+			
+			//不能解决用户对时间戳的非法输入
 			else if(command.equals("print-history-info") ) {
 				DataBase db = new DataBaseImplement();
+				System.out.println("请以\"yyyy-MM-dd hh:mm:ss\"的形式输入要查询开始时间");
 				String in_timestamp = scan.nextLine();
+				System.out.println("请以\"yyyy-MM-dd hh:mm:ss\"的形式输入要查询结束时间");
 				String out_timestamp = scan.nextLine();
 				
 				String[] columns = {"car_id","charged_fee","in_timestamp","out_timestamp"};
@@ -220,14 +236,19 @@ public class Arrangement {
 			//必须按照timestamp支持的格式输入，如：2021-09-02 22:10:00
 			//打印的车辆的总金额信息一定是在输入的时间范围内的，且不能包括起止时间
 			//开始时间和结束时间之间要求换行
+			
+			//不能解决用户对时间戳的非法输入
 			else if(command.equals("print-history-money") ) {
 				DataBase db = new DataBaseImplement();
+				System.out.println("请以\"yyyy-MM-dd hh:mm:ss\"的形式输入要查询开始时间");
 				String in_timestamp = scan.nextLine();
+				System.out.println("请以\"yyyy-MM-dd hh:mm:ss\"的形式输入要查询结束时间");
 				String out_timestamp = scan.nextLine();
 				
 				String[] columns = {"charged_fee"};
 				String sql = "select charged_fee from history where in_timestamp > \'" + in_timestamp + "\' and out_timestamp < \'" + out_timestamp + "\'";
 				List<Map<String,String>> list = db.executeQuery(sql, columns);
+				
 				
 				System.out.println(in_timestamp + "————————————>" + out_timestamp + "总应收金额为");
 				//计算总金额

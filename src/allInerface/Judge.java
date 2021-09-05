@@ -4,19 +4,22 @@
 package allInerface;
 
 import dataBase.DataBaseImplement;
-import fileAction.FileActionImplement;
+import judge.*;
 
 
 import java.util.*;
 
 public interface Judge{
 	/*
-	 * 参数：无
-	 * 返回值：车牌号存放的.properties文件名
-	 * 用处：读取车牌，将其写到.properties文件中
+	 * 参数：要识别车牌所在的路径
+	 * 返回值：车牌号的String值
+	 * 用处：识别指定的车牌
 	 */
-	public static String judge() {
-		return null;
+	public static String judge(String path) {
+		
+		String resouce =  WebImage.webImage(path);
+		String car_id = resouce.substring(27, 34);
+		return car_id;
 	}
 	
 	/*
@@ -42,21 +45,4 @@ public interface Judge{
 	}
 	
 	
-	/*
-	 * 参数
-	 * 返回值
-	 * 用处：获取要模拟入场或出场的car_id
-	 */
-	public static String preparingCar_id(String resource, String destination)
-    {
-    	//复制要识别的图片到指定文件夹
-////    	FileAction fileAction = new FileActionImplement();
-//    	fileAction.copyFile(resource, destination);
-    	
-    	//调用judge()得inCar_id
-		String inCar_id = Judge.judge();
-//    	return inCar_id;
-		return "湘A12346";
-    	
-    }
 }
