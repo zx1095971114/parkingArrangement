@@ -35,7 +35,7 @@ public class Arrangement {
 		System.out.println("print-history-info:输出某时间段内的所有非固定车的历史停靠信息");
 		System.out.println("print-history-money:打印某时段内总的应收金额");
 		System.out.println("quit:退出程序");
-		System.out.println("quit:获取帮助信息");
+		System.out.println("help:获取帮助信息");
 		
 		String command = null;
 		boolean i = true;
@@ -215,19 +215,24 @@ public class Arrangement {
 				
 				System.out.println("车牌号" + "		"+ "停车费" + "		" + "进场时间" + "				" + "出场时间");
 				for(Map<String,String> map : list) {
-					System.out.print(map.get("car_id"));
-					System.out.print("		");
-					
-					//将费用保留2位小数
-					DecimalFormat df = new DecimalFormat("0.00");
-					Double fee = Double.valueOf(map.get("charged_fee") );
-					System.out.print(df.format(fee) );
-					System.out.print("		");
-					
-					System.out.print(map.get("in_timestamp"));
-					System.out.print("		");
-					System.out.print(map.get("out_timestamp"));
-					System.out.println(" ");
+					if(!map.get("car_id").equals(null)) {
+						System.out.print(map.get("car_id"));
+						System.out.print("		");
+						
+						//将费用保留2位小数
+						DecimalFormat df = new DecimalFormat("0.00");
+						Double fee = Double.valueOf(map.get("charged_fee") );
+						System.out.print(df.format(fee) );
+						System.out.print("		");
+						
+						System.out.print(map.get("in_timestamp"));
+						System.out.print("		");
+						System.out.print(map.get("out_timestamp"));
+						System.out.println(" ");
+					}
+					else {
+						System.out.println("查询出错，请找管理员解决问题");
+					}
 				}
 				continue;
 			}
@@ -254,6 +259,7 @@ public class Arrangement {
 				//计算总金额
 				double fee = 0.00;
 				for(Map<String,String> map : list) {
+					
 					fee = fee + Double.valueOf(map.get("charged_fee") );
 				}
 				
@@ -274,7 +280,7 @@ public class Arrangement {
 				System.out.println("print-history-info:输出某时间段内的所有非固定车的历史停靠信息");
 				System.out.println("print-history-money:打印某时段内总的应收金额");
 				System.out.println("quit:退出程序");
-				System.out.println("quit:获取帮助信息");
+				System.out.println("help:获取帮助信息");
 				continue;
 			}
 			

@@ -24,10 +24,11 @@ public class OutPark {
 			//输入"out"开始入场模拟
 			if(command.equals("out")) {
 				//获取出场车车牌
-				System.out.println("请输入要入场车辆的图片路径");
+				System.out.println("请输入要出场车辆的图片路径");
 				String resouce = scan.nextLine();
 				String outCar_id = Judge.judge(resouce);
 				
+//				System.out.println("1");
 				//判断入场车牌是否合法
 				if(!DataBase.isCarId(outCar_id)) {
 					System.out.println("车牌识别错误，非法车牌");
@@ -35,6 +36,11 @@ public class OutPark {
 					continue;
 				}
 				
+				//打印出场车车牌
+				System.out.println("该车车牌为：" + outCar_id);
+				
+				
+//				System.out.println("2");
 				//判断是否是固定车
 				if(Judge.isVip(outCar_id)) {
 					System.out.println("一路顺风");
@@ -43,7 +49,9 @@ public class OutPark {
 				}
 				else {
 					//显示车费
+//					System.out.println(outCar_id);
 					double fee = OutPrepare.getFee(outCar_id);
+//					System.out.println(fee);
 					//费用保留2位小数
 					DecimalFormat df = new DecimalFormat("0.00");
 					System.out.println("请支付：" + df.format(fee) + "元");
@@ -63,6 +71,7 @@ public class OutPark {
 					
 					//数据录入history
 					
+//					System.out.println("3");
 					//获得入场时间
 					String sql0 = "select in_timestamp from status where car_id = \'" + outCar_id + "\'";
 					String[] columns0 = {"in_timestamp"};

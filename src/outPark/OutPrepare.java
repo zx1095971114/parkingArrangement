@@ -35,20 +35,21 @@ public class OutPrepare  {
 			inTime = map.get("in_timestamp");
 		}
 		
-		//将入场时间转为Date类,将出场时间与入场时间格式转为一致
+		//获得目前时间
 		Date inDate = null;
 		Date outDate = new Date();
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-    	String a = sdf.format(outDate);
+//    	String a = sdf.format(outDate);
     	try {
     		inDate = sdf.parse(inTime);
-    		outDate = sdf.parse(a);
+//    		outDate = sdf.parse(a);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
     	
     	//计算时间差(ms计算)
     	long parkTime = outDate.getTime() - inDate.getTime();
+//    	System.out.println(parkTime/1000 / 3600);
     	
     	//计算金额(每小时fee元,不足一小时部分舍弃)
     	//获取fee

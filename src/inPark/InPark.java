@@ -32,6 +32,9 @@ public class InPark {
 					continue;
 				}
 				
+				//打印出场车车牌
+				System.out.println("该车车牌为：" + inCar_id);
+				
 				//判断是否是固定车
 				if(Judge.isVip(inCar_id)) {
 					System.out.println("欢迎光临！");
