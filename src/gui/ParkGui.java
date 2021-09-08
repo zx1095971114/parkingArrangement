@@ -41,6 +41,8 @@ public class ParkGui extends JFrame {
 	private JLabel lblCar_id;
 	private JLabel lblScreen;
 	private JLabel lblFee;
+	private JLabel lblOutTime;
+	private JLabel lblInTime;
 	private boolean isIn;
 	/**
 	 * Launch the application.
@@ -97,7 +99,7 @@ public class ParkGui extends JFrame {
 		lblScreen.setIcon(null);
 		
 		JLabel lblScreenCarId = new JLabel("识别出的车牌号");
-		lblScreenCarId.setFont(new Font("宋体", Font.BOLD, 17));
+		lblScreenCarId.setFont(new Font("宋体", Font.BOLD, 20));
 		
 		lblCar_id = new JLabel("");
 		lblCar_id.setFont(new Font("宋体", Font.BOLD, 20));
@@ -132,6 +134,21 @@ public class ParkGui extends JFrame {
 			}
 		});
 		btnReset.setFont(new Font("宋体", Font.BOLD, 30));
+		
+		JLabel lblScreenPath = new JLabel("图片路径");
+		lblScreenPath.setFont(new Font("宋体", Font.BOLD, 30));
+		
+		JLabel lblScreenOutTime = new JLabel("出场时间");
+		lblScreenOutTime.setFont(new Font("宋体", Font.BOLD, 20));
+		
+		lblOutTime = new JLabel("");
+		lblOutTime.setFont(new Font("宋体", Font.BOLD, 20));
+		
+		JLabel lblScreenInTime = new JLabel("入场时间");
+		lblScreenInTime.setFont(new Font("宋体", Font.BOLD, 20));
+		
+		lblInTime = new JLabel("");
+		lblInTime.setFont(new Font("宋体", Font.BOLD, 20));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -139,21 +156,34 @@ public class ParkGui extends JFrame {
 					.addGap(122)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(lblScreenCarId, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
-									.addGap(35)
-									.addComponent(lblCar_id, GroupLayout.PREFERRED_SIZE, 304, GroupLayout.PREFERRED_SIZE))
-								.addComponent(lblPicture, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE))
-							.addGap(29))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(btnIn)
-							.addGap(18)
-							.addComponent(btnOut)
-							.addGap(25)
-							.addComponent(btnReset, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
-							.addGap(43))
-						.addComponent(pathTextField, GroupLayout.PREFERRED_SIZE, 510, GroupLayout.PREFERRED_SIZE))
+							.addComponent(lblScreenInTime, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblPicture, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+									.addGroup(gl_contentPane.createSequentialGroup()
+										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+											.addComponent(lblScreenOutTime, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+											.addComponent(lblScreenCarId, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+										.addGap(18)
+										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+											.addComponent(lblOutTime, GroupLayout.PREFERRED_SIZE, 292, GroupLayout.PREFERRED_SIZE)
+											.addComponent(lblCar_id, GroupLayout.PREFERRED_SIZE, 292, GroupLayout.PREFERRED_SIZE)
+											.addComponent(lblInTime, GroupLayout.PREFERRED_SIZE, 292, GroupLayout.PREFERRED_SIZE))))
+								.addGap(29))
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addComponent(btnIn)
+								.addGap(18)
+								.addComponent(btnOut)
+								.addGap(25)
+								.addComponent(btnReset, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+								.addGap(43))
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addComponent(lblScreenPath, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+								.addGap(18)
+								.addComponent(pathTextField, GroupLayout.PREFERRED_SIZE, 353, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED))))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
@@ -171,24 +201,33 @@ public class ParkGui extends JFrame {
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(76)
+							.addGap(30)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblScreenInTime, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblInTime, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(lblScreenOutTime, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblOutTime, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblScreenCarId, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblCar_id, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+								.addComponent(lblCar_id)
+								.addComponent(lblScreenCarId, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lblPicture, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE)
 							.addGap(32))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
 							.addComponent(lblScreen, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
 							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(pathTextField, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblScreenFee, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addComponent(lblScreenFee, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(lblScreenPath, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
 							.addGap(30))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(lblFee, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
@@ -219,24 +258,32 @@ public class ParkGui extends JFrame {
 	 */
 	protected void inActionPerformed(ActionEvent event) {
 		//获取图片路径
-		//要识别的路径为src/outCars/3.jpg
+		//要识别的路径为C:\大学\大三\软件工程综合实践\停车场出入管理系统\src\inCars\1.jpg
 		//要显示的路径为/outCars/3.jpg
+		//输入的是3.jpg
 		String distiguishPath = null;
 		String performPath = null;
-		distiguishPath = pathTextField.getText();
+		String path = null;
+		path = pathTextField.getText();
 		
-		if(distiguishPath.equals("")) {
+		//得到识别图片路径,显示图片路径
+		distiguishPath = "C:\\大学\\大三\\软件工程综合实践\\停车场出入管理系统\\src\\inCars\\" + path;
+		performPath = "/inCars/" + path;
+		
+		if(path.equals("")) {
 			JOptionPane.showMessageDialog(null, "请输入图片路径");
 		}
 		else {
-			//得到显示图片路径
-			performPath = distiguishPath.substring(3);
+			
 			//显示图片
 			ImageIcon picture = new ImageIcon(ParkGui.class.getResource(performPath));
 			lblPicture.setIcon(picture);
 			//显示车牌
 			String car_id = Judge.judge(distiguishPath);
 			lblCar_id.setText(car_id);
+			//显示入场时间
+			String in_timestamp = DataBase.getNowTimestamp();
+			lblInTime.setText(in_timestamp);
 	
 			//将isIn设为true
 			this.isIn = true;
@@ -253,16 +300,10 @@ public class ParkGui extends JFrame {
 		//数据录入history
 		
 		//获得入场时间
-		String sql0 = "select in_timestamp from status where car_id = \'" + outCar_id + "\'";
-		String[] columns0 = {"in_timestamp"};
-		List<Map<String,String>> list0 = db.executeQuery(sql0, columns0);
-		String inTime = null;
-		for (Map<String, String> map : list0) {
-			inTime = map.get("in_timestamp");
-		}
+		String inTime = lblInTime.getText();
 
 		//向history表中存入信息
-		String out_timestamp = DataBase.getNowTimestamp();
+		String out_timestamp = lblOutTime.getText();
 		String sql1 = "insert into history values (\'" + outCar_id + "\', \'" + fee + "\',\'" + inTime + "\',\'" + out_timestamp + "\')";
 		if(db.add_update_delete(sql1) ) {
 		
@@ -335,7 +376,7 @@ public class ParkGui extends JFrame {
 						DataBase db = new DataBaseImplement();
 						//向status表中存入信息
 						String inCar_id = lblCar_id.getText();
-						String in_timestamp = DataBase.getNowTimestamp();
+						String in_timestamp = lblInTime.getText();
 						String sql0 = "insert into status values (\'" + inCar_id + "\', \'" + in_timestamp + "\')";
 						if(db.add_update_delete(sql0) ) {
 						
@@ -386,28 +427,53 @@ public class ParkGui extends JFrame {
 	 * 
 	 */
 	protected void outActionPerformed(ActionEvent event) {
+		//获取图片路径
+		//要识别的路径为C:\大学\大三\软件工程综合实践\停车场出入管理系统\src\outCars\1.jpg
+		//要显示的路径为/outCars/3.jpg
+		//输入的是3.jpg
+		String distiguishPath = null;
+		String performPath = null;
+		String path = null;
+		path = pathTextField.getText();
+		
+		//获取显示和识别路径
+		distiguishPath = "C:\\大学\\大三\\软件工程综合实践\\停车场出入管理系统\\src\\outCars\\" + path;
+		performPath = "/outCars/" + path;
+		
 		if(pathTextField.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "请输入图片路径");
 		}
 		else {
-
-			//获取图片路径
-			//要识别的路径为src/outCars/3.jpg
-			//要显示的路径为/outCars/3.jpg
-			String distiguishPath = null;
-			String performPath = null;
-			distiguishPath = pathTextField.getText();
-			performPath = distiguishPath.substring(3);
-	
-			//显示图片
-			ImageIcon picture = new ImageIcon(ParkGui.class.getResource(performPath));
-			lblPicture.setIcon(picture);
-			//显示车牌
 			String car_id = Judge.judge(distiguishPath);
-			lblCar_id.setText(car_id);
-			
-			//将isIn设为false
-			isIn = false;
+			//显示入场时间
+			DataBase db = new DataBaseImplement();
+			String sql0 = "select in_timestamp from status where car_id = \'" + car_id + "\'";
+			String[] columns0 = {"in_timestamp"};
+			List<Map<String,String>> list0 = db.executeQuery(sql0, columns0);
+			String inTime = null;
+			for (Map<String, String> map : list0) {
+				inTime = map.get("in_timestamp");
+			}
+			if(inTime == null) {
+				JOptionPane.showMessageDialog(null, "该车未录入停车场入场记录，请让车主配合调查");
+			}
+			else {
+				lblInTime.setText(inTime);
+				
+				//显示图片
+				ImageIcon picture = new ImageIcon(ParkGui.class.getResource(performPath));
+				lblPicture.setIcon(picture);
+				//显示车牌
+				lblCar_id.setText(car_id);
+				
+				
+				//显示出场时间
+				String out_timestamp = DataBase.getNowTimestamp();
+				lblOutTime.setText(out_timestamp);
+				
+				//将isIn设为false
+				isIn = false;
+			}
 		}
 	}
 	
@@ -419,7 +485,8 @@ public class ParkGui extends JFrame {
 		lblFee.setText("");
 		lblPicture.setIcon(null);
 		lblScreen.setIcon(null);
+		lblInTime.setText("");
+		lblOutTime.setText("");
 		pathTextField.setText("");
 	}
-	
 }

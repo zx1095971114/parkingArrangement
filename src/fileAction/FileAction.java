@@ -52,9 +52,7 @@ public  class  FileAction  {
            File  oldfile  =  new  File(oldPath);  
            if  (oldfile.exists())  {  //文件存在时  
                InputStream  inStream  =  new  FileInputStream(oldPath);  //读入原文件 
-               System.out.println("1");
                FileOutputStream  fs  =  new  FileOutputStream(newPath);  
-               System.out.println("1");
                byte[]  buffer  =  new  byte[1444];  
 //               int  length;  
                while  (  (byteread  =  inStream.read(buffer))  !=  -1)  {  

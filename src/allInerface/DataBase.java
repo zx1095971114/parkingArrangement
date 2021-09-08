@@ -99,9 +99,28 @@ public interface DataBase{
 	 * 用处：获取当前时间的时间戳
 	 */
 	
+	
+	//返回时间时，HH表示24小时制，hh表示12小时制，千万别打错，血的教训
+	/*
+	 * 1、yyyy表示年，如2013；
+
+　　　　2、MM表示月，如12；
+
+　　　　3、dd表示天，如31；
+
+　　　　4、hh表示用12小时制，如7；
+
+　　　　5、HH表示用24小时制，如18；
+
+　　　　6、mm表示分，如59；
+
+　　　　7、ss表示秒，如59；
+
+　　　　8、SSS表示毫米，如333
+	 */
     public static String getNowTimestamp() {
     	Date date = new Date();
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     	String nowTimestamp = sdf.format(date);
 		return nowTimestamp;
 	}

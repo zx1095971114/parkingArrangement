@@ -12,7 +12,11 @@
  * Date date2 = sdf.parse(s);
  * long t2 = date2.getTime;
  * t1会与t2不相等
+ * 解决，在getTime方法中，时间戳要是24小时制的，而"yyyy-MM-dd hh:mm:ss"是12小时制的，应该将hh改为HH才行
  */
+
+
+//计算费用会出现有时正确，有时错误的情况
 package outPark;
 
 import java.text.SimpleDateFormat;
@@ -38,11 +42,10 @@ public class OutPrepare  {
 		//获得目前时间
 		Date inDate = null;
 		Date outDate = new Date();
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-//    	String a = sdf.format(outDate);
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
     	try {
     		inDate = sdf.parse(inTime);
-//    		outDate = sdf.parse(a);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,7 +65,7 @@ public class OutPrepare  {
 		}
 		
 		//计算并返回
-
+		
 		double charged_fee = parkTime / (1000 * 3600) * fee;
 		
     	return charged_fee;

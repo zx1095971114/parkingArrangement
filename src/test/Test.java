@@ -1,22 +1,22 @@
 package test;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.security.Timestamp;
 
 import java.time.*;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.*;
 
 
 import allInerface.*;
 import dataBase.DataBaseImplement;
-import outPark.FileAction;
+import fileAction.ExePerformed;
 import outPark.OutPrepare;
 import arrangement.*;
 
 public class Test {
 
 	public static void main(String[] args) {
-		DataBase db = new DataBaseImplement();
 		
 		/*
 		 * 检验DataBase的add_up_delete()方法
@@ -72,8 +72,19 @@ public class Test {
 		
 		
 		
-		String a = Judge.judge("inCars/1.jpg");
-		System.out.println(a);
+//		String a = Judge.judge("C:\\大学\\大三\\软件工程综合实践\\停车场出入管理系统\\src\\inCars\\1.jpg");
+//		System.out.println(a);
+		
+		String a = "苏E05EV8";
+//		DataBase db = new DataBaseImplement();
+//		String sql0 = "select in_timestamp from status where car_id = \'" + "苏E05EV8" + "\'";
+//		String[] columns0 = {"in_timestamp"};
+//		List<Map<String,String>> list0 = db.executeQuery(sql0, columns0);
+//		String inTime = null;
+//		for (Map<String, String> map : list0) {
+//			inTime = map.get("in_timestamp");
+//		}
+		System.out.println(a.length());
 	}
 
 }
