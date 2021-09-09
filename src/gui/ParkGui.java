@@ -267,7 +267,7 @@ public class ParkGui extends JFrame {
 		path = pathTextField.getText();
 		
 		//得到识别图片路径,显示图片路径
-		distiguishPath = "C:\\大学\\大三\\软件工程综合实践\\停车场出入管理系统\\src\\inCars\\" + path;
+		distiguishPath = "src/inCars/" + path;
 		performPath = "/inCars/" + path;
 		
 		if(path.equals("")) {
@@ -437,7 +437,7 @@ public class ParkGui extends JFrame {
 		path = pathTextField.getText();
 		
 		//获取显示和识别路径
-		distiguishPath = "C:\\大学\\大三\\软件工程综合实践\\停车场出入管理系统\\src\\outCars\\" + path;
+		distiguishPath = "src/outCars/" + path;
 		performPath = "/outCars/" + path;
 		
 		if(pathTextField.getText().equals("")) {
